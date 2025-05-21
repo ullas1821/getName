@@ -1,0 +1,17 @@
+clc;
+clear all;
+close all;
+Xg1=input('Enter Generator 1 reactance:');
+Xg2=input('Enter Generator 2 reactance:');
+Xt1=input('Enter Transformer 1 reactance:');
+Xt2=input('Enter Transformer 2 reactance:');
+Xtl1=input('Enter Transmission line 1 reactance:');
+Xtl2=input('Enter Transmission line 2 reactance:');
+Xgeq=((Xg1)*(Xg2))/((Xg1)+(Xg2))
+Xeq=Xgeq+Xt1+Xt2+Xtl1+Xtl2
+E=input('Enter EMF in PU');
+P=input('Enter Power Rating:');
+V=input('Enter Volatge in kV:');
+Id=(E/Xeq)
+Ib=(P*10e6/(sqrt(3)*V*10e3))
+Im=Ib*Id
