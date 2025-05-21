@@ -1,0 +1,17 @@
+w=input('Enter the weight in kg/m')
+sa=input('Enter the sag at A')
+sb=input('Enter the sag at B ')
+l=input('Enter the span length in m')
+bs=input('Enter the breakdown strength')
+area=input('Enter the area')
+fos=input('Enter the Factor of safety')
+t=bs*area/fos
+h=sa-sb
+x1=(l/2)-(t*h/(w*l))
+x2=(l/2)+(t*h/(w*l))
+xp=(l/2)-x1
+s1=w*x1^2/(2*t)
+s2=w*x1^2/(2*t)
+yp=w*xp*xp/(2*t)
+ce=h+sa-s1
+yp=yp+ce
