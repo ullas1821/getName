@@ -1,3 +1,37 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 P=input('Enter the power rating in MVA')
 E=input("Enter the voltage rating in KV")
 xdst=input('Enter the sub-transient reactance')
