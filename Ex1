@@ -1,0 +1,43 @@
+exp_1fid=fopen('medium.txt','r') 
+[array]=fscanf(fid,'%f') 
+vr=array(1,1),ir=array(2,1),r=array(3,1),x=array(4,1),y=array(5,1),pfr=array(6,1), 
+L=array(7,1) 
+z=L*(r+j*x) 
+fclose(fid); 
+y=j*y 
+p=input('enter 1 for pi network & 2 for T network'); 
+%constants of medium transmission line 
+a=1+(y*z)/2 
+d=a 
+if p==1 
+b=z 
+c=y*(1+(y*z)/4) 
+end 
+if p==2 
+c=y 
+b=z*(1+(y*z)/4) 
+end 
+angr=acos(pfr); 
+vrp=vr/sqrt(3); 
+irp=(ir/1000)*(cos(angr)-j*sin(angr)); 
+prp=3*abs(vrp)*abs(irp)*pfr; 
+vsp=a*vrp+b*irp; 
+vsl=abs(vsp)*sqrt(3) 
+is=c*vrp+d*irp; 
+isp=abs(is) 
+pfs=cos(angle(vsp)-angle(is)); 
+psp=3*abs(vsp)*abs(is)*pfs; 
+eff=(prp/psp)*100 
+reg=(abs(vsp)/abs(a)-abs(vrp))/abs(vrp)*100; 
+if p==1 
+fprintf('\n solution of medium transmission line for pi network given vr,ir is:\n') 
+end 
+if p==2 
+fprintf('\n solution of medium transmission line for T network given vr,ir is:\n') 
+end 
+ABCD=[a;b;c;d] 
+fprintf('\n sending end voltage in kV is %g\n',vsl) 
+fprintf('\n sending end current in amps is %g\n',isp*1000) 
+fprintf('\n efficiency of the line in percentage  is:%g\n',eff) 
+fprintf('\n regulation of the line in percentage  is:%g\n',reg) 
+fprintf('AD-BC=%g\n',a*d-b*c);
