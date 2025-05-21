@@ -1,0 +1,17 @@
+P=input('Enter the power rating in MVA')
+E=input("Enter the voltage rating in KV")
+xdst=input('Enter the sub-transient reactance')
+xdti=input('Enter the transient reactance')
+xd=input('Enter the steady-state reactance')
+Eg=input('Enter the E in PU')
+Is=Eg/xd;
+Isstpu=Eg/xdst;
+Ib=(P*10e6)/(sqrt(3)*E*10e3);
+Isst=Isstpu*Ib;
+DC=0.1*Ist;
+MakeupCurrent=sqrt(3)*E*10e3*Isst*1.6;
+MakeupCurrent=abs(MakeupCurrent)
+SystemBrakingCapacity=sqrt(3)*E*10e3*Isst;
+SystemBrakingCapacity=abs(SystemBrakingCapacity)
+Intreuptcapacity=sqrt(3)*E*10e3*Isst*1.1;
+Intreuptcapacity=abs(Intreuptcapacity)
