@@ -1,3 +1,37 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 w=input('Enter the weight in kg/m')
 sa=input('Enter the sag at A')
 sb=input('Enter the sag at B ')
