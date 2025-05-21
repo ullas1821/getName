@@ -1,0 +1,556 @@
+%%  MATLAB program to Compute Efficiency and Voltage regulation of 
+
+medium transmission line for a given receiving end voltage and current
+
+
+
+fid=fopen('medium.txt','r') 
+
+[array]=fscanf(fid,'%f') 
+
+vr=array(1,1),ir=array(2,1),r=array(3,1),x=array(4,1),y=array(5,1),pfr=array(6,1), 
+
+L=array(7,1) 
+
+z=L*(r+j*x) 
+
+fclose(fid); 
+
+y=j*y 
+
+p=input('enter 1 for pi network & 2 for T network'); 
+
+%constants of medium transmission line 
+
+a=1+(y*z)/2 
+
+d=a 
+
+if p==1 
+
+b=z 
+
+c=y*(1+(y*z)/4) 
+
+end 
+
+if p==2 
+
+c=y 
+
+b=z*(1+(y*z)/4) 
+
+end 
+
+angr=acos(pfr); 
+
+vrp=vr/sqrt(3); 
+
+irp=(ir/1000)*(cos(angr)-j*sin(angr)); 
+
+prp=3*abs(vrp)*abs(irp)*pfr; 
+
+vsp=a*vrp+b*irp; 
+
+vsl=abs(vsp)*sqrt(3) 
+
+is=c*vrp+d*irp; 
+
+isp=abs(is) 
+
+pfs=cos(angle(vsp)-angle(is)); 
+
+psp=3*abs(vsp)*abs(is)*pfs; 
+
+eff=(prp/psp)*100 
+
+reg=(abs(vsp)/abs(a)-abs(vrp))/abs(vrp)*100; 
+
+if p==1 
+
+fprintf('\n solution of medium transmission line for pi network given vr,ir is:\n') 
+
+end 
+
+if p==2 
+
+fprintf('\n solution of medium transmission line for T network given vr,ir is:\n') 
+
+end 
+
+ABCD=[a;b;c;d] 
+
+fprintf('\n sending end voltage in kV is %g\n',vsl) 
+
+fprintf('\n sending end current in amps is %g\n',isp*1000) 
+
+fprintf('\n efficiency of the line in percentage  is:%g\n',eff) 
+
+fprintf('\n regulation of the line in percentage  is:%g\n',reg) 
+
+fprintf('AD-BC=%g\n',a*d-b*c); 
+
+
+
+Input text file: 
+
+132  110  0.275  0.974  7.38e-04  0.8  100 
+
+
+
+//Matlab Output: 
+
+Solution of medium transmission line for pi network given vr,ir is: 
+
+ABCD = 
+
+0.9644 + 0.0100i 
+
+27.5000 +97.4000i -0.0000 + 0.0007i 
+
+0.9644 + 0.0100i 
+
+Sending end voltage in kV is 143.227 
+
+Sending end current in amps is 85.6411 
+
+Efficiency of the line in percentage is: 96.3639 
+
+Regulation of the line in percentage is: 12.4987 
+
+AD-BC=1 
+
+Solution of medium transmission line for T network given Vr , Ir is: 
+
+ABCD = 
+
+0.9644 + 0.0100i 
+
+26.5223 +95.8067i 
+
+0 + 0.0007i 
+
+0.9644 + 0.0100i 
+
+Sending end voltage in kV is 142.885 
+
+Sending end current in amps is 85.8312 
+
+Efficiency of the line in percentage is: 96.162 
+
+Regulation of the line in percentage is: 12.2304 
+
+AD-BC=1
+
+
+
+%%MATLAB program to Compute Efficiency and Voltage regulation of 
+
+medium transmission line for a given receiving end voltage and power.
+
+
+
+fid=fopen('prog2.txt','r') 
+
+[array]=fscanf(fid,'%f') 
+
+vr=array(1,1),pr=array(2,1),r=array(3,1),x=array(4,1),y=array(5,1),pfr=array(6,1),l=arr
+
+ ay(7,1) 
+
+z=l*(r+j*x) 
+
+fclose(fid); 
+
+y=j*y 
+
+p=input('enter 1 for pi network & 2 for T network'); 
+
+a=1+(y*z)/2 
+
+d=a; 
+
+if p==1 
+
+b=z 
+
+c=y*(1+(y*z)/4) 
+
+end 
+
+if p==2 
+
+c=y 
+
+b=z*(1+(y*z)/4) 
+
+end 
+
+angr=acos(pfr); 
+
+vrp=vr/sqrt(3); 
+
+irp=(pr/(sqrt(3)*vr*pfr))*(cos(angr)-j*sin(angr)); 
+
+prp=3*abs(vrp)*abs(irp)*pfr; 
+
+vsp=a*vrp+b*irp; 
+
+vsl=abs(vsp)*sqrt(3); 
+
+is=c*vrp+d*irp; 
+
+isp=abs(is); 
+
+pfs=cos(angle(vsp)-angle(is)); 
+
+psp=3*abs(vsp)*abs(is)*pfs; 
+
+eff=(prp/psp)*100; 
+
+reg=(abs(vsp)/abs(a)-abs(vrp))/abs(vrp)*100; 
+
+if p==1 
+
+fprintf('\nsolution of medium transmission line for pi network given vr,pr is:\n') 
+
+end 
+
+if p==2 
+
+fprintf('\nsolution of medium transmission line for T network given vr,pr is:\n') 
+
+end 
+
+ABCD=[a;b;c;d] 
+
+fprintf('\nsending end voltage in kV is :%g\n',vsl) 
+
+fprintf('sending end current in amp is :%g\n',isp*1000) 
+
+fprintf('efficiency of the line in percentage  is :%g\n',eff) 
+
+fprintf('regulation of the line in percentage  is :%g\n',reg) 
+
+fprintf('AD-BC=%G\n',a*d-b*c); 
+
+
+
+Input file: 
+
+132   50   0.2   0.5   310e-06   0.8   100 
+
+
+
+// Matlab Output: 
+
+Solution of medium transmission line for pi network given vr, pr is: 
+
+ABCD = 
+
+0.9922 + 0.0031i 
+
+20.0000 +50.0000i -0.0000 + 0.0003i 
+
+0.9922 + 0.0031i 
+
+Sending end voltage in kV is: 153.367 
+
+Sending end current in amp is: 257.849 
+
+Efficiency of the line in percentage is: 92.1495 
+
+Regulation of the line in percentage is: 17.0944 
+
+AD-BC=1 
+
+Solution of medium transmission line for T network given vr,pr is: 
+
+ABCD = 
+
+0.9922 + 0.0031i 
+
+19.8450 +49.8372i 
+
+0 + 0.0003i 
+
+0.9922 + 0.0031i 
+
+Sending end voltage in kV is: 153.261 
+
+Sending end current in amp is: 257.83 
+
+Efficiency of the line in percentage is: 92.1894 
+
+Regulation of the line in percentage is: 17.0134 
+
+AD-BC=1 
+
+
+
+%%  MATLAB program to Compute efficiency and voltage regulation of 
+
+medium transmission line for a given sending end voltage and current.
+
+
+
+fid=fopen('mediumrec33.txt','r') 
+
+[array]=fscanf(fid,'%f') 
+
+vs=array(1,1),is=array(2,1),r=array(3,1),x=array(4,1),y=array(5,1),pfs=array(6,1) 
+
+l=array(7,1) 
+
+z=l*(r+j*x); 
+
+fclose(fid); 
+
+y=j*y 
+
+p=input('enter 1 for pi network and 2 for T network'); 
+
+%constants calculation 
+
+a=1+(y*z)/2 
+
+d=a; 
+
+if p==1 
+
+b=z 
+
+c=y*(1+(y*z)/4) 
+
+end 
+
+if p==2 
+
+c=y 
+
+b=z*(1+(y*z)/4) 
+
+end 
+
+angs=acos(pfs); 
+
+vsp=vs/sqrt(3); 
+
+isp=(is/1000)*(cos(angs)-j*sin(angs)); 
+
+psp=3*abs(vsp)*abs(isp)*pfs; 
+
+vrp=d*vsp-b*isp; 
+
+vrl=abs(vrp)*sqrt(3); 
+
+ir=-c*vsp+a*isp; 
+
+irp=abs(ir); 
+
+pfr=cos(angle(vrp)-angle(ir)); 
+
+prp=3*abs(vrp)*abs(ir)*pfr; 
+
+eff=(prp/psp)*100; 
+
+reg=(abs(vsp)/abs(a)-abs(vrp))/abs(vrp)*100; 
+
+if p==1 
+
+fprintf('\nsolution of medium transmission line for pi network given vr,ir is:\n') 
+
+end 
+
+if p==2 
+
+fprintf('\nsolution of medium transmission line for T network given vr,ir is:\n') 
+
+end 
+
+ABCD=[a;b;c;d] 
+
+fprintf('\n receiving end voltage in kv is :%g\n',vrl) 
+
+fprintf('\n receiving end current in amp is :%g\n',ir*1000) 
+
+fprintf('efficiency of the line in percentags  is :%g\n',eff) 
+
+fprintf('regulation of the line in percentage  is :%g\n',reg) 
+
+fprintf('AD-BC=%G\n',a*d-b*c); 
+
+
+
+Input file 
+
+345  400   0.0468   0.398    5.486e-04   0.95   1 
+
+
+
+//Matlab Output: 
+
+Solution of medium transmission line for pi network given vr,ir is: 
+
+ABCD = 
+
+0.9891 + 0.0013i 
+
+4.6800 +39.8000i -0.0000 + 0.0005i 
+
+0.9891 + 0.0013i 
+
+Receiving end voltage in kV is: 330.471 
+
+Receiving end current in amp is: 376.082 
+
+Efficiency of the line in percentage is: 98.9079 
+
+Regulation of the line in percentage is: 5.54877 
+
+AD-BC=1 
+
+Solution of medium transmission line for T network given vr,ir is: 
+
+ABCD = 
+
+0.9891 + 0.0013i 
+
+4.6289 +39.5858i 
+
+0 + 0.0005i 
+
+0.9891 + 0.0013i 
+
+Receiving end voltage in kV is: 330.541 
+
+Receiving end current in amp is: 376.012 
+
+Efficiency of the line in percentage is: 98.9014 
+
+Regulation of the line in percentage is: 5.52641 
+
+AD-BC=1 
+
+
+
+%% Sag For Equal Support : Type 1
+
+
+
+clear all;
+
+close all;
+
+ w=input('Enter the weight of the load in kg/m =');
+
+ l=input("Enter Span Length");
+
+ us=input('Enter the ultimate strength');
+
+ fos=input('Enter the factor');
+
+ T=us/fos; %Tension
+
+ S=((w*l^2)/(8*T));%sag for equal support
+
+ fprintf('\n weight in kg/m :%g',w);
+
+ fprintf('\n length in m :%g',l);
+
+ fprintf('\n ultimate strenght  :%g',us);
+
+ fprintf('\n factor of safety  :%g',fos);
+
+fprintf('\n sag of equal supports:%g',S);
+
+
+
+%%Sag For Equal Support : Type 2
+
+
+
+clc;
+
+clear all;
+
+close all;
+
+ w=input('Enter the weight of the load in kg/m =');
+
+ l=input("Enter Span Length");
+
+ fos=input('Enter the factor');
+
+ bs=input('Enter the  breakdown strength in kg/m2');
+
+ area=input('Enter area in m2:');
+
+ %bs=4465;
+
+ %area=1.29;
+
+ us=area*bs;
+
+ T=us/fos; %Tension
+
+ S=((w*l^2)/(8*T));%sag for equal support
+
+ fprintf('\n weight in kg/m :%g',w);
+
+ fprintf('\n length in m :%g',l);
+
+ fprintf('\n ultimate strenght  :%g',us);
+
+ fprintf('\n factor of safety  :%g',fos);
+
+fprintf('\n sag of equal supports:%g',S);
+
+
+
+%% Symmetrical Fault
+
+
+
+clc;
+
+clear all;
+
+close all;
+
+Xg1=input('Enter Generator 1 reactance:');
+
+Xg2=input('Enter Generator 2 reactance:');
+
+Xt1=input('Enter Transformer 1 reactance:');
+
+Xt2=input('Enter Transformer 2 reactance:');
+
+Xtl1=input('Enter Transmission line 1 reactance:');
+
+Xtl2=input('Enter Transmission line 2 reactance:');
+
+Xgeq=((Xg1)*(Xg2))/((Xg1)+(Xg2))
+
+Xeq=Xgeq+Xt1+Xt2+Xtl1+Xtl2
+
+E=input('Enter EMF in PU');
+
+P=input('Enter Power Rating:');
+
+V=input('Enter Volatge in kV:');
+
+Id=(E/Xeq)
+
+Ib=(P*10e6/(sqrt(3)*V*10e3))
+
+Im=Ib*Id
+
+
+
+%%
+
+
+
+
+
