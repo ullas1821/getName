@@ -1,0 +1,27 @@
+clc;
+clear all;
+close all;
+ w=input('Enter the weight of the load in kg/100m =');
+ l=input("Enter Span Length");
+ %wcu=input('enter weight of copper in kg/m :');
+ wice=input('enter weight of ice coating in kg/m :');
+ wp=input('enter weight of wind pressure in kg/m:');
+ area=input('enter cs area in cm2:');
+ fos=input('Enter the factor');
+ bs=input('Enter the  breakdown strength in kg/m2');
+ T=(bs*area)/fos;
+ %area=input('Enter area in m2:');
+ %bs=4465;
+ %area=1.29;
+ %us=area*bs;
+ %T=us/fos; %Tension
+ wt=sqrt((w+wice)^2+wp^2);
+ S=((w*l^2)/(8*T));%sag for equal support
+ fprintf('\n weight in kg/m :%g',w);
+ fprintf('\n length in m :%g',l);
+ fprintf('\n weight of ice coating  :%g',wice);
+ fprintf('\n wp = :%g',wp);
+ fprintf('area =:%g',area);
+ fprintf('\n factor of safety  :%g',fos);
+ fprintf('\n breakdown strength= %g',bs);
+ fprintf('\n sag of unequal supports:%g',S);
