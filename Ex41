@@ -1,0 +1,14 @@
+clc;
+clear all;
+close all;
+ w=input('Enter the weight of the load in kg/m =');
+ l=input("Enter Span Length");
+ us=input('Enter the ultimate strength');
+ fos=input('Enter the factor');
+ T=us/fos; %Tension
+ S=((w*l^2)/(8*T));%sag for equal support
+ fprintf('\n weight in kg/m :%g',w);
+ fprintf('\n length in m :%g',l);
+ fprintf('\n ultimate strenght  :%g',us);
+ fprintf('\n factor of safety  :%g',fos);
+fprintf('\n sag of equal supports:%g',S);
